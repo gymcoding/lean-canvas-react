@@ -18,5 +18,6 @@ module.exports = {
       'warn',
       { allowConstantExport: true },
     ],
+    'react/self-closing-comp': 'warn',
   },
 };
