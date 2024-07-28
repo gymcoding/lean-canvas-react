@@ -4,17 +4,13 @@ const CardComponent = styled.div`
   border: 2px solid #393939;
   padding: 24px;
   border-radius: 6px;
-  ${props => {
-    console.log('props: ', props);
-    return (
-      props.dark &&
-      `
+  ${props =>
+    props.dark &&
+    `
       background-color: black;
       color: white;
       border: none;
-    `
-    );
-  }}
+    `}
 `;
 
 function Card() {
