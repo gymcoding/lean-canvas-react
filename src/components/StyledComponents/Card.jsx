@@ -1,6 +1,8 @@
 import styled from 'styled-components';
 
-const CardComponent = styled.div`
+const CardComponent = styled.div.attrs({
+  className: 'card-container',
+})`
   border: 2px solid #393939;
   padding: 24px;
   border-radius: 6px;
