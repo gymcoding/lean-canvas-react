@@ -1,5 +1,12 @@
-function AppStyled() {
-  return <>Hello Styled Components!</>;
+import './App.css';
+import Card from './components/StyledComponents/Card';
+
+function App() {
+  return (
+    <>
+      <Card />
+    </>
+  );
 }
 
-export default AppStyled;
+export default App;
