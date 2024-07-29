@@ -7,7 +7,7 @@ const CardComponent = styled.div.attrs({
   padding: 24px;
   border-radius: 6px;
   ${props =>
-    props.dark &&
+    props.$dark &&
     `
       background-color: black;
       color: white;
@@ -17,7 +17,7 @@ const CardComponent = styled.div.attrs({
 
 function Card() {
   return (
-    <CardComponent dark>
+    <CardComponent $dark>
       <h2>Styled Component</h2>
       <p>이것은 styled-components로 만든 카드입니다.</p>
     </CardComponent>
