@@ -1,10 +1,23 @@
 import React from 'react';
 import ReactDOM from 'react-dom/client';
-import App from './AppTailwindCSS.jsx';
+import { createBrowserRouter, RouterProvider } from 'react-router-dom';
 import './index.css';
-
+const router = createBrowserRouter([
+  {
+    path: '/',
+    element: <div>Hello world!</div>,
+  },
+  {
+    path: '/about',
+    element: <div>About Page!</div>,
+  },
+  {
+    path: '/contact',
+    element: <div>Contact Page!</div>,
+  },
+]);
 ReactDOM.createRoot(document.getElementById('root')).render(
   <React.StrictMode>
-    <App />
+    <RouterProvider router={router} />
   </React.StrictMode>,
 );
