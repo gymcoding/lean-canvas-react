@@ -1,4 +1,4 @@
-import { useNavigate, Link } from 'react-router-dom';
+import { useNavigate, Link, NavLink } from 'react-router-dom';
 
 function Header() {
   const navigate = useNavigate();
@@ -9,13 +9,28 @@ function Header() {
         <li onClick={() => navigate('/about')}>About</li>
         <li onClick={() => navigate('/contact')}>Contact</li> */}
         <li>
-          <Link to="/">Home</Link>
+          <NavLink
+            to="/"
+            className={({ isActive }) => (isActive ? 'text-blue-700' : '')}
+          >
+            Home
+          </NavLink>
         </li>
         <li>
-          <Link to="/about">About</Link>
+          <NavLink
+            to="/about"
+            className={({ isActive }) => (isActive ? 'text-blue-700' : '')}
+          >
+            About
+          </NavLink>
         </li>
         <li>
-          <Link to="/contact">Contact</Link>
+          <NavLink
+            to="/contact"
+            className={({ isActive }) => (isActive ? 'text-blue-700' : '')}
+          >
+            Contact
+          </NavLink>
         </li>
       </ul>
     </header>
