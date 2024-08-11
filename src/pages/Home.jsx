@@ -1,6 +1,6 @@
 import { useState } from 'react';
 import { FaSearch, FaList, FaTh } from 'react-icons/fa';
-import CanvasItem from '../components/CanvasItem';
+import CanvasList from '../components/CanvasList';
 function Home() {
   const [searchText, setSearchText] = useState('');
   const [isGridView, setIsGridView] = useState(true);
@@ -65,27 +65,11 @@ function Home() {
           </button>
         </div>
       </div>
-      {filteredData.length === 0 ? (
-        <div className="text-center py-10">
-          <p className="text-xl text-gray-600">
-            {searchText ? '검색 결과가 없습니다' : '목록이 없습니다'}
-          </p>
-        </div>
-      ) : (
-        <div
-          className={`grid gap-6 ${isGridView ? 'grid-cols-1 sm:grid-cols-2 lg:grid-cols-3' : 'grid-cols-1'}`}
-        >
-          {filteredData.map(item => (
-            <CanvasItem
-              key={item.id}
-              id={item.id}
-              title={item.title}
-              lastModified={item.lastModified}
-              category={item.category}
-            />
-          ))}
-        </div>
-      )}
+      <CanvasList
+        filteredData={filteredData}
+        isGridView={isGridView}
+        searchText={searchText}
+      />
     </div>
   );
 }
