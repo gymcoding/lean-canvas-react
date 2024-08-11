@@ -1,7 +1,6 @@
 import { useState } from 'react';
-import { Link } from 'react-router-dom';
 import { FaSearch, FaList, FaTh } from 'react-icons/fa';
-
+import CanvasItem from '../components/CanvasItem';
 function Home() {
   const [searchText, setSearchText] = useState('');
   const [isGridView, setIsGridView] = useState(true);
@@ -77,23 +76,13 @@ function Home() {
           className={`grid gap-6 ${isGridView ? 'grid-cols-1 sm:grid-cols-2 lg:grid-cols-3' : 'grid-cols-1'}`}
         >
           {filteredData.map(item => (
-            <Link
+            <CanvasItem
               key={item.id}
-              className="bg-white rounded-lg shadow-md overflow-hidden transition-transform duration-300 hover:scale-105"
-              to={`/canvases/${item.id}`}
-            >
-              <div className="p-6">
-                <h2 className="text-2xl font-bold mb-2 text-gray-800">
-                  {item.title}
-                </h2>
-                <p className="text-sm text-gray-600 mb-4">
-                  최근 수정일: {item.lastModified}
-                </p>
-                <span className="inline-block px-3 py-1 text-sm font-semibold text-gray-700 bg-gray-200 rounded-full">
-                  {item.category}
-                </span>
-              </div>
-            </Link>
+              id={item.id}
+              title={item.title}
+              lastModified={item.lastModified}
+              category={item.category}
+            />
           ))}
         </div>
       )}
