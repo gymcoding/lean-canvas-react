@@ -1,6 +1,8 @@
 import { useState } from 'react';
 import { FaSearch, FaList, FaTh } from 'react-icons/fa';
 import CanvasList from '../components/CanvasList';
+import SearchBar from '../components/SearchBar';
+import ViewToggle from '../components/ViewToggle';
 function Home() {
   const [searchText, setSearchText] = useState('');
   const [isGridView, setIsGridView] = useState(true);
@@ -37,33 +39,8 @@ function Home() {
   return (
     <div className="container mx-auto px-4 py-16">
       <div className="mb-6 flex flex-col sm:flex-row items-center justify-between">
-        <div className="relative w-full sm:w-64 mb-4 sm:mb-0">
-          <input
-            type="text"
-            placeholder="검색"
-            className="w-full pl-10 pr-4 py-2 border rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500"
-            value={searchText}
-            onChange={e => setSearchText(e.target.value)}
-            aria-label="검색"
-          />
-          <FaSearch className="absolute left-3 top-3 text-gray-400" />
-        </div>
-        <div className="flex space-x-2">
-          <button
-            onClick={() => setIsGridView(true)}
-            className={`p-2 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 ${isGridView ? 'bg-blue-500 text-white' : 'bg-gray-200'}`}
-            aria-label="Grid view"
-          >
-            <FaTh />
-          </button>
-          <button
-            onClick={() => setIsGridView(false)}
-            className={`p-2 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 ${!isGridView ? 'bg-blue-500 text-white' : 'bg-gray-200'}`}
-            aria-label="List view"
-          >
-            <FaList />
-          </button>
-        </div>
+        <SearchBar searchText={searchText} setSearchText={setSearchText} />
+        <ViewToggle isGridView={isGridView} setIsGridView={setIsGridView} />
       </div>
       <CanvasList
         filteredData={filteredData}
