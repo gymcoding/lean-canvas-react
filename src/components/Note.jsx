@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useEffect, useRef, useState } from 'react';
 import { AiOutlineClose, AiOutlineCheck } from 'react-icons/ai';
 
 const Note = ({ id, onRemoveNote }) => {
@@ -10,6 +10,15 @@ const Note = ({ id, onRemoveNote }) => {
   ];
 
   const [isEditing, setIsEditing] = useState(false);
+
+  const textareaRef = useRef(null);
+  const [content, setContent] = useState('');
+  useEffect(() => {
+    if (textareaRef.current) {
+      textareaRef.current.style.height =
+        textareaRef.current.scrollHeight + 'px';
+    }
+  }, [content]);
 
   return (
     <div
@@ -39,6 +48,9 @@ const Note = ({ id, onRemoveNote }) => {
         )}
       </div>
       <textarea
+        ref={textareaRef}
+        value={content}
+        onChange={e => setContent(e.target.value)}
         className={`w-full h-full bg-transparent resize-none border-none focus:outline-none text-gray-900 overflow-hidden`}
         aria-label="Edit Note"
         placeholder="메모를 작성하세요."
