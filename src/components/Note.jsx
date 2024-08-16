@@ -9,6 +9,11 @@ const Note = ({ id, onRemoveNote }) => {
     'bg-green-300',
   ];
 
+  // 0, 1, 2, 3
+  const randomIndex = Math.floor(Math.random() * colorOptions.length);
+
+  const [color, setColor] = useState(colorOptions[randomIndex]);
+
   const [isEditing, setIsEditing] = useState(false);
 
   const textareaRef = useRef(null);
@@ -22,7 +27,7 @@ const Note = ({ id, onRemoveNote }) => {
 
   return (
     <div
-      className={`p-4 bg-yellow-300 relative max-h-[32rem] overflow-hidden`}
+      className={`p-4 ${color} relative max-h-[32rem] overflow-hidden`}
       onClick={() => setIsEditing(true)}
     >
       <div className="absolute top-2 right-2">
@@ -63,6 +68,7 @@ const Note = ({ id, onRemoveNote }) => {
             <button
               key={index}
               className={`w-6 h-6 rounded-full cursor-pointer outline outline-gray-50 ${option}`}
+              onClick={() => setColor(option)}
               aria-label={`Change color to ${option}`}
             />
           ))}
