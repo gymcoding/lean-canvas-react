@@ -36,7 +36,7 @@ function Home() {
   };
 
   return (
-    <div className="container mx-auto px-4 py-16">
+    <>
       <div className="mb-6 flex flex-col sm:flex-row items-center justify-between">
         <SearchBar searchText={searchText} setSearchText={setSearchText} />
         <ViewToggle isGridView={isGridView} setIsGridView={setIsGridView} />
@@ -56,7 +56,7 @@ function Home() {
           onDeleteItem={handleDeleteItem}
         />
       )}
-    </div>
+    </>
   );
 }
 
