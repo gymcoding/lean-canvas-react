@@ -2,14 +2,14 @@ import { useEffect, useState } from 'react';
 import CanvasList from '../components/CanvasList';
 import SearchBar from '../components/SearchBar';
 import ViewToggle from '../components/ViewToggle';
-import axios from 'axios';
+import { getCanvases } from '../api/canvas';
 function Home() {
   const [searchText, setSearchText] = useState('');
   const [isGridView, setIsGridView] = useState(true);
   const [data, setData] = useState([]);
 
   async function fetchData() {
-    const response = await axios.get('http://localhost:8000/canvases');
+    const response = await getCanvases();
     setData(response.data);
   }
 
