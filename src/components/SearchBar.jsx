@@ -1,5 +1,5 @@
 import { FaSearch } from 'react-icons/fa';
-function SearchBar({ searchText, setSearchText }) {
+function SearchBar({ searchText = '', setSearchText }) {
   return (
     <div className="relative w-full sm:w-64 mb-4 sm:mb-0">
       <input
