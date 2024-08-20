@@ -1,5 +1,5 @@
 import { canvases } from './http';
 
-export function getCanvases() {
-  return canvases.get('/');
+export function getCanvases(params) {
+  return canvases.get('/', { params });
 }
