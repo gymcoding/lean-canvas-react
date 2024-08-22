@@ -31,6 +31,7 @@ export async function getCanvasById(id) {
   return data;
 }
 
+// json-server
 export async function updateTitle(id, title) {
   /**
    * post - 새로운 자원 생성
