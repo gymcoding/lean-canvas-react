@@ -63,7 +63,10 @@ const Note = ({
           <button
             aria-label="Close Note"
             className="text-gray-700"
-            onClick={() => onRemoveNote(id)}
+            onClick={e => {
+              e.stopPropagation();
+              onRemoveNote(id);
+            }}
           >
             <AiOutlineClose size={20} />
           </button>

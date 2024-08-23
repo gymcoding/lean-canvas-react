@@ -32,11 +32,6 @@
       "problem": {
         "notes": [
           {
-            "id": "p1",
-            "content": "기존 스마트홈 시스템의",
-            "color": "bg-green-300"
-          },
-          {
             "id": "p2",
             "content": "높은 초기 설치 비용",
             "color": "bg-pink-300"
@@ -45,6 +40,16 @@
             "id": "p3",
             "content": "다양한 기기 간 호환성 문제",
             "color": "bg-blue-300"
+          },
+          {
+            "id": "31484f0f-3335-4790-9682-8dbab07b6611",
+            "content": "",
+            "color": "bg-blue-300"
+          },
+          {
+            "id": "188d79be-622e-4741-859f-558c5c1dccfc",
+            "content": "",
+            "color": ""
           }
         ]
       },
@@ -102,6 +107,11 @@
             "id": "s3",
             "content": "모듈식 설계로 쉬운 확장성",
             "color": "bg-pink-300"
+          },
+          {
+            "id": "0506ad34-02bc-4972-98e7-4a0d70d165a3",
+            "content": "",
+            "color": "bg-blue-300"
           }
         ]
       },
