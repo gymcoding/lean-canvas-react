@@ -8,6 +8,8 @@ const Note = ({
   onUpdateNote,
   onRemoveNote,
 }) => {
+  const [localContent, setLocalContent] = useState(content);
+
   const colorOptions = [
     'bg-yellow-300',
     'bg-pink-300',
@@ -33,8 +35,8 @@ const Note = ({
     }
   }, [content]);
 
-  const handleContentChange = e => {
-    onUpdateNote(id, e.target.value, color);
+  const handleContentChange = () => {
+    onUpdateNote(id, localContent, color);
   };
 
   const handleColorChange = newColor => {
@@ -74,8 +76,9 @@ const Note = ({
       </div>
       <textarea
         ref={textareaRef}
-        value={content}
-        onChange={handleContentChange}
+        value={localContent}
+        onChange={e => setLocalContent(e.target.value)}
+        onBlur={handleContentChange}
         className={`w-full h-full bg-transparent resize-none border-none focus:outline-none text-gray-900 overflow-hidden`}
         aria-label="Edit Note"
         placeholder="메모를 작성하세요."
