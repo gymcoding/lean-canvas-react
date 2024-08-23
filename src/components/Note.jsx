@@ -36,6 +36,11 @@ const Note = ({
     onUpdateNote(id, e.target.value, color);
   };
 
+  const handleColorChange = newColor => {
+    setColor(newColor);
+    onUpdateNote(id, content, newColor);
+  };
+
   return (
     <div
       className={`p-4 ${color} relative max-h-[32rem] overflow-hidden`}
@@ -79,7 +84,7 @@ const Note = ({
             <button
               key={index}
               className={`w-6 h-6 rounded-full cursor-pointer outline outline-gray-50 ${option}`}
-              onClick={() => setColor(option)}
+              onClick={() => handleColorChange(option)}
               aria-label={`Change color to ${option}`}
             />
           ))}
