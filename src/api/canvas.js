@@ -40,3 +40,7 @@ export async function updateTitle(id, title) {
    */
   await canvases.patch(`/${id}`, { title });
 }
+
+export async function updateCanvas(id, canvas) {
+  await canvases.put(`/${id}`, canvas);
+}

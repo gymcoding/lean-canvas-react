@@ -1,9 +1,21 @@
 import CanvasCard from './CanvasCard';
-function LeanCanvas({ canvas }) {
+function LeanCanvas({ canvas, onCanvasChange }) {
+  const handleNotesChange = (section, updatedNotes) => {
+    const updatedCanvas = {
+      ...canvas,
+      [section]: { ...canvas[section], notes: updatedNotes },
+    };
+    onCanvasChange(updatedCanvas);
+  };
+
   return (
     <div className="border-4 border-black">
       <div className="grid grid-cols-5">
-        <CanvasCard title={'1. 문제'} notes={canvas.problem.notes} />
+        <CanvasCard
+          title={'1. 문제'}
+          notes={canvas.problem.notes}
+          onNotesChange={notes => handleNotesChange('problem', notes)}
+        />
         <CanvasCard title={'4. 해결안'} notes={canvas.solution.notes} />
         <CanvasCard
           title={'3. 가치제안'}

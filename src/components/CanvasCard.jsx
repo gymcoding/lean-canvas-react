@@ -1,8 +1,13 @@
 import { FaPlus } from 'react-icons/fa';
 import Note from './Note';
-function CanvasCard({ title, isSubtitle = false, notes = [] }) {
+function CanvasCard({ title, isSubtitle = false, notes = [], onNotesChange }) {
   const handleAddNote = () => {};
   const handleRemoveNote = id => {};
+  const handleUpdateNote = (id, content, color) => {
+    onNotesChange(
+      notes.map(note => (note.id === id ? { ...note, content, color } : note)),
+    );
+  };
   return (
     <div className="row-span-1 bg-white min-h-48 border border-collapse border-gray-300">
       <div
@@ -24,6 +29,7 @@ function CanvasCard({ title, isSubtitle = false, notes = [] }) {
             content={note.content}
             color={note.color}
             onRemoveNote={handleRemoveNote}
+            onUpdateNote={handleUpdateNote}
           />
         ))}
       </div>
