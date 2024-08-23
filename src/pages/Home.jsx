@@ -7,31 +7,26 @@ import ViewToggle from '../components/ViewToggle';
 import Loading from '../components/Loading';
 import Error from '../components/Error';
 import Button from '../components/Button';
+import useApiRequest from '../hooks/useApiRequest';
 
 function Home() {
   const [searchText, setSearchText] = useState();
   const [isGridView, setIsGridView] = useState(true);
   const [data, setData] = useState([]);
-  const [isLoading, setIsLoading] = useState(true);
-  const [error, setError] = useState(null);
 
-  async function fetchData(params) {
-    try {
-      setIsLoading(true);
-      setError(null);
-      await new Promise(resolver => setTimeout(resolver, 1000));
-      const response = await getCanvases(params);
-      setData(response.data);
-    } catch (err) {
-      setError(err);
-    } finally {
-      setIsLoading(false);
-    }
-  }
+  // API call
+  const { isLoading, error, execute: fetchData } = useApiRequest(getCanvases);
+  const { isLoading: isLoadingCreate, execute: createNewCanvas } =
+    useApiRequest(createCanvas);
 
   useEffect(() => {
-    fetchData({ title_like: searchText });
-  }, [searchText]);
+    fetchData(
+      { title_like: searchText },
+      {
+        onSuccess: response => setData(response.data),
+      },
+    );
+  }, [searchText, fetchData]);
 
   const handleDeleteItem = async id => {
     if (confirm('삭제 하시겠습니까?') === false) {
@@ -45,18 +40,28 @@ function Home() {
     }
   };
 
-  const [isLoadingCreate, setIsLoadingCreate] = useState(false);
   const handleCreateCanvas = async () => {
-    try {
-      setIsLoadingCreate(true);
-      await new Promise(resolver => setTimeout(resolver, 1000));
-      await createCanvas();
-      fetchData({ title_like: searchText });
-    } catch (err) {
-      alert(err.message);
-    } finally {
-      setIsLoadingCreate(false);
-    }
+    createNewCanvas(null, {
+      onSuccess: () => {
+        fetchData(
+          { title_like: searchText },
+          {
+            onSuccess: response => setData(response.data),
+          },
+        );
+      },
+      onError: err => alert(err.message),
+    });
+    // try {
+    //   setIsLoadingCreate(true);
+    //   await new Promise(resolver => setTimeout(resolver, 1000));
+    //   await createCanvas();
+    //   fetchData({ title_like: searchText });
+    // } catch (err) {
+    //   alert(err.message);
+    // } finally {
+    //   setIsLoadingCreate(false);
+    // }
   };
 
   return (
