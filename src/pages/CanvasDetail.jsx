@@ -25,7 +25,7 @@ function CanvasDetail() {
   return (
     <div>
       <CanvasTitle value={canvas?.title} onChange={handleTitleChange} />
-      <LeanCanvas />
+      {canvas && <LeanCanvas canvas={canvas} />}
     </div>
   );
 }
