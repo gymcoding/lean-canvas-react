@@ -5,5 +5,8 @@ function create(baseURL, options) {
   return instance;
 }
 
-export const canvases = create('http://localhost:8000/canvases/');
+export const canvases = create(
+  'https://json-server-vercel-blue-nine.vercel.app/canvases/',
+);
+// export const canvases = create('http://localhost:8000/canvases/');
 // export const posts = create('http://localhost:8000/posts/');
