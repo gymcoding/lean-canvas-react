@@ -12,20 +12,21 @@ import useApiRequest from '../hooks/useApiRequest';
 function Home() {
   const [searchText, setSearchText] = useState();
   const [isGridView, setIsGridView] = useState(true);
-  const [data, setData] = useState([]);
+  // const [data, setData] = useState([]);
 
   // API call
-  const { isLoading, error, execute: fetchData } = useApiRequest(getCanvases);
+  const {
+    isLoading,
+    data,
+    error,
+    execute: fetchData,
+  } = useApiRequest(getCanvases, { initialData: [] });
+
   const { isLoading: isLoadingCreate, execute: createNewCanvas } =
     useApiRequest(createCanvas);
 
   useEffect(() => {
-    fetchData(
-      { title_like: searchText },
-      {
-        onSuccess: response => setData(response.data),
-      },
-    );
+    fetchData({ title_like: searchText });
   }, [searchText, fetchData]);
 
   const handleDeleteItem = async id => {
@@ -43,12 +44,7 @@ function Home() {
   const handleCreateCanvas = async () => {
     createNewCanvas(null, {
       onSuccess: () => {
-        fetchData(
-          { title_like: searchText },
-          {
-            onSuccess: response => setData(response.data),
-          },
-        );
+        fetchData({ title_like: searchText });
       },
       onError: err => alert(err.message),
     });
